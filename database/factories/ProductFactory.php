@@ -22,7 +22,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->word();
+        $title = $this->faker->sentence();
         return [
             'title' => $title,
             'slug'  => Str::slug($title),
