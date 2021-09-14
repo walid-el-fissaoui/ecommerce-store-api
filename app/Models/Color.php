@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Product;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderProduct;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Color extends Model
 {
@@ -15,6 +16,6 @@ class Color extends Model
         return $this->belongsToMany(Product::class)->withTimestamps();
     }
     public function orders() {
-        return $this->belongsToMany(Order::class)->withTimestamps();
+        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
     }
 }

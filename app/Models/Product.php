@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Image;
+use App\Models\Order;
 use App\Models\Rating;
 use App\Models\Category;
-use App\Models\Color;
-use App\Models\Size;
-use App\Models\Order;
 use App\Models\Favorite;
+use App\Models\OrderProduct;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -33,7 +34,7 @@ class Product extends Model
         return $this->belongsToMany(Size::class)->withTimestamps();
     }
     public function orders() {
-        return $this->belongsToMany(Order::class)->withTimestamps();
+        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
     }
     public function favorites() {
         return $this->hasMany(Favorite::class);
