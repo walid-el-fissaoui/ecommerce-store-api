@@ -18,6 +18,7 @@ class ImageSeeder extends Seeder
         $products = Product::all();
         Image::factory()->count(100)->make()->each(function($image) use($products) {
             $image->product_id = $products->random()->id;
+            $image->save();
         });
     }
 }

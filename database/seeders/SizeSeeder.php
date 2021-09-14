@@ -14,6 +14,11 @@ class SizeSeeder extends Seeder
      */
     public function run()
     {
-        Size::factory()->count(5)->create();
+        $sizes = Collect(['s', 'm', 'l', 'xl', 'xxl']);
+        $sizes->each(function($size){
+            $newSize = new Size();
+            $newSize->title = $size;
+            $newSize->save();
+        });
     }
 }
