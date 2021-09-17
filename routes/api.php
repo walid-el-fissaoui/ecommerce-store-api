@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,10 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/products',[ProductController::class,'index']);
 Route::get('/products/{id}',[ProductController::class,'show']);
 Route::get('/products{title}',[ProductController::class,'search']);
+// Categories
+Route::get('/categories',[CategoryController::class,'index']);
+// Brands
+Route::get('/brands',[BrandController::class,'index']);
 
 // ============== Protected Routes ==============
 Route::middleware(['auth:sanctum'])->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Size;
+use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Image;
 use App\Models\Order;
@@ -26,6 +27,9 @@ class Product extends Model
     }
     public function categories() {
         return $this->belongsToMany(Category::class)->withTimestamps();
+    }
+    public function brands() {
+        return $this->belongsToMany(Brand::class)->withTimestamps();
     }
     public function colors() {
         return $this->belongsToMany(Color::class)->withTimestamps();
