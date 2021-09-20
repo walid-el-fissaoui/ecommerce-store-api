@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sex;
 use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Color;
@@ -38,6 +39,9 @@ class Product extends Model
     public function sizes() {
         return $this->belongsToMany(Size::class)->withTimestamps();
     }
+    public function sexes() {
+        return $this->belongsToMany(Sex::class)->withTimestamps();
+    }
     public function orders() {
         return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
     }
@@ -46,6 +50,10 @@ class Product extends Model
     }
 
     public function scopeFilter(Builder $query) {
+        if(request('title')) {
+            $title = request('title');
+            $query->where('title','like','%'.$title.'%');
+        }
         if(request('categories')) {
                 $categories = request('categories');
                 $query->with('categories')->whereHas('categories',function($query) use($categories) {
@@ -68,6 +76,12 @@ class Product extends Model
             $sizes = request('sizes');
             $query->with('sizes')->whereHas('sizes',function($query) use($sizes) {
                 $query->whereIn('size_id',$sizes);
+            });
+        }
+        if(request('sexes')) {
+            $sexes = request('sexes');
+            $query->with('sexes')->whereHas('sexes',function($query) use($sexes) {
+                $query->whereIn('sex_id',$sexes);
             });
         }
         if(request('min_price')) {

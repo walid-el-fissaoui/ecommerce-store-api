@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\BrandController;
@@ -37,6 +38,8 @@ Route::get('/brands',[BrandController::class,'index']);
 Route::get('/colors',[ColorController::class,'index']);
 // Sizes
 Route::get('/sizes',[SizeController::class,'index']);
+// Sexes
+Route::get('/sexes',[SexController::class,'index']);
 
 // ============== Protected Routes ==============
 Route::middleware(['auth:sanctum'])->group(function () {

@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             BrandProductSeeder::class,
             OrderSeeder::class,
             OrderProductSeeder::class,
+            SexSeeder::class,
+            ProductSexSeeder::class
         ]);
     }
 }
