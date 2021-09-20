@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
@@ -24,12 +26,17 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 // Products
 Route::get('/products',[ProductController::class,'index']);
+Route::get('/search',[ProductController::class,'search']);
 Route::get('/products/{id}',[ProductController::class,'show']);
 Route::get('/products{title}',[ProductController::class,'search']);
 // Categories
 Route::get('/categories',[CategoryController::class,'index']);
 // Brands
 Route::get('/brands',[BrandController::class,'index']);
+// Colors
+Route::get('/colors',[ColorController::class,'index']);
+// Sizes
+Route::get('/sizes',[SizeController::class,'index']);
 
 // ============== Protected Routes ==============
 Route::middleware(['auth:sanctum'])->group(function () {

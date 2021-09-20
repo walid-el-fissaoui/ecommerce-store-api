@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ProductResource::collection(Product::paginate(6));
+        $perPage = $request->input('per_page') ?? null;
+        return ProductResource::collection(Product::paginate($perPage)->appends(['per_page' => $perPage]));
     }
 
     /**
@@ -73,11 +75,12 @@ class ProductController extends Controller
     /**
      * search by title.
      *
-     * @param  str  $title
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search($title)
+    public function search(Request $request)
     {
-        return Product::where('title','like','%'.$title.'%')->get();
+        $perPage = $request->input('per_page') ?? null;
+        return ProductResource::collection(Product::filter()->paginate($perPage)->appends(['per_page' => $perPage]));
     }
 }
