@@ -94,6 +94,6 @@ class ProductController extends Controller
      */
     public function cart(Request $request)
     {
-        return ProductCartResource::collection(Product::filter()->get());
+        return ProductCartResource::collection(Product::filterCart()->get());
     }
 }

@@ -98,4 +98,39 @@ class Product extends Model
         }
         return $query;
     }
+
+    // public function scopeFilterCart(Builder $query) {
+    //     if(request('data')) {
+
+    //         $data = request('data');
+    //         $query->whereIn('id',$data['items'])
+    //         ->with('colors',
+    //         function($query) use($data) {
+    //             return $query->whereIn('color_id',$data['colors']);
+    //         })
+    //         ->with('sizes',
+    //         function($query) use($data) {
+    //             return $query->whereIn('size_id',$data['sizes']);
+    //         });
+    //     }
+    //     return $query;
+    // }
+    public function scopeFilterCart(Builder $query) {
+        if(request('items') && request('colors') && request('sizes')) {
+
+            $items = request('items');
+            $colors = request('colors');
+            $sizes = request('sizes');
+            $query->whereIn('id',$items)
+            ->with('colors',
+            function($query) use($colors) {
+                return $query->whereIn('color_id',$colors);
+            })
+            ->with('sizes',
+            function($query) use($sizes) {
+                return $query->whereIn('size_id',$sizes);
+            });
+        }
+        return $query;
+    }
 }

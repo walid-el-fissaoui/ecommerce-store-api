@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Color;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductCartResource extends JsonResource
@@ -15,10 +16,12 @@ class ProductCartResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'price' => $this->price,
-            'image' => $this->images()->first()->url
+            'id'        => $this->id,
+            'title'     => $this->title,
+            'price'     => $this->price,
+            'image'     => $this->images()->first()->url,
+            'colors'    => ColorResource::collection($this->colors),
+            'sizes'     => SizeResource::collection($this->sizes)
         ];
     }
 }
