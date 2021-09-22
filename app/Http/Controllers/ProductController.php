@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductCartResource;
 use App\Http\Resources\ProductDetailsResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -83,5 +84,16 @@ class ProductController extends Controller
     {
         $perPage = $request->input('per_page') ?? null;
         return ProductResource::collection(Product::filter()->paginate($perPage)->appends(['per_page' => $perPage]));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function cart(Request $request)
+    {
+        return ProductCartResource::collection(Product::filter()->get());
     }
 }

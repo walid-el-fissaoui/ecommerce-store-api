@@ -92,6 +92,10 @@ class Product extends Model
             $maxPrice = request('max_price');
             $query->where('price','<=',$maxPrice);
         }
+        if(request('ids')) {
+            $ids = request('ids');
+            $query->whereIn('id',$ids);
+        }
         return $query;
     }
 }

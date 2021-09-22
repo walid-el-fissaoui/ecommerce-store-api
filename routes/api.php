@@ -28,6 +28,7 @@ Route::post('/login',[AuthController::class,'login']);
 // Products
 Route::get('/products',[ProductController::class,'index']);
 Route::get('/search',[ProductController::class,'search']);
+Route::get('/cart',[ProductController::class,'cart']);
 Route::get('/products/{id}',[ProductController::class,'show']);
 Route::get('/products{title}',[ProductController::class,'search']);
 // Categories
