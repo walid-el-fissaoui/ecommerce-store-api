@@ -28,7 +28,7 @@ Route::post('/login',[AuthController::class,'login']);
 // Products
 Route::get('/products',[ProductController::class,'index']);
 Route::get('/search',[ProductController::class,'search']);
-Route::get('/cart',[ProductController::class,'cart']);
+Route::get('/search/cart',[ProductController::class,'cart']);
 Route::get('/products/{id}',[ProductController::class,'show']);
 Route::get('/products{title}',[ProductController::class,'search']);
 // Categories
@@ -37,8 +37,10 @@ Route::get('/categories',[CategoryController::class,'index']);
 Route::get('/brands',[BrandController::class,'index']);
 // Colors
 Route::get('/colors',[ColorController::class,'index']);
+Route::get('/colors/search',[ColorController::class,'search']);
 // Sizes
 Route::get('/sizes',[SizeController::class,'index']);
+Route::get('/sizes/search',[SizeController::class,'search']);
 // Sexes
 Route::get('/sexes',[SexController::class,'index']);
 

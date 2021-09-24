@@ -20,8 +20,6 @@ class ProductCartResource extends JsonResource
             'title'     => $this->title,
             'price'     => $this->price,
             'image'     => $this->images()->first()->url,
-            'colors'    => ColorResource::collection($this->colors),
-            'sizes'     => SizeResource::collection($this->sizes)
         ];
     }
 }

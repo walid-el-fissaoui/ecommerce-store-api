@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderProduct;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Size extends Model
@@ -17,5 +18,13 @@ class Size extends Model
     }
     public function orders() {
         return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
+    }
+
+    public function scopeFilter(Builder $query) {
+        if(request('ids')) {
+            $ids = request('ids');
+            $query->whereIn("id",$ids);
+        }
+        return $query;
     }
 }

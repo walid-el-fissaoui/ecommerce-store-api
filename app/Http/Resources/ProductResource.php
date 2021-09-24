@@ -21,7 +21,6 @@ class ProductResource extends JsonResource
             'price'     => $this->price,
             'image'     => new ProductImageResource($this->images()->first()),
             'colors'    => ProductColorResource::collection($this->colors),
-            // 'sizes'    => ProductSizeResource::collection($this->sizes)
         ];
     }
 }

@@ -17,4 +17,14 @@ class SizeController extends Controller
     {
         return SizeResource::collection(Size::all());
     }
+
+    /**
+     * search for size
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        return SizeResource::collection(Size::filter()->get());
+    }
 }
