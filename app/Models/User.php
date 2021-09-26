@@ -49,9 +49,6 @@ class User extends Authenticatable
     public function ratings() {
         return $this->hasMany(Rating::class);
     }
-    public function purchases() {
-        return $this->hasMany(Purchase::class);
-    }
     public function favorites() {
         return $this->hasMany(Favorite::class);
     }

@@ -13,11 +13,8 @@ class Size extends Model
 {
     use HasFactory;
 
-    public function products() {
-        return $this->belongsToMany(Product::class)->withTimestamps();
-    }
-    public function orders() {
-        return $this->hasMany(Order::class);
+    public function items() {
+        return $this->hasMany(Item::class);
     }
 
     public function scopeFilter(Builder $query) {

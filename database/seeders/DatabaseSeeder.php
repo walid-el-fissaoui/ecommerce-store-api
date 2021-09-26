@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\ItemOrder;
 use App\Models\Order;
 use Illuminate\Database\Seeder;
 
@@ -17,21 +18,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
-            ColorSeeder::class,
-            SizeSeeder::class,
-            UserSeeder::class,
-            ProductSeeder::class,
-            ImageSeeder::class,
-            ProductSizeSeeder::class,
-            ColorProductSeeder::class,
-            CategoryProductSeeder::class,
-            BrandProductSeeder::class,
-            OrderSeeder::class,
-            OrderProductSeeder::class,
             SexSeeder::class,
-            ProductSexSeeder::class
+            SizeSeeder::class,
+            ColorSeeder::class,
+            ProductSeeder::class,
+            ProductSexSeeder::class,
+            ItemSeeder::class,
+            ItemOrderSeeder::class
         ]);
     }
 }
