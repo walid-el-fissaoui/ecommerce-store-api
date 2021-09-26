@@ -43,7 +43,7 @@ class Product extends Model
         return $this->belongsToMany(Sex::class)->withTimestamps();
     }
     public function orders() {
-        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
+        return $this->hasMany(Order::class);
     }
     public function favorites() {
         return $this->hasMany(Favorite::class);

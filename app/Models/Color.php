@@ -17,7 +17,7 @@ class Color extends Model
         return $this->belongsToMany(Product::class)->withTimestamps();
     }
     public function orders() {
-        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withTimestamps();
+        return $this->hasMany(Order::class);
     }
 
     public function scopeFilter(Builder $query) {

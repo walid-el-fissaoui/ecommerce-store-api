@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Order;
-use App\Models\User;
 
 class OrderFactory extends Factory
 {
@@ -22,8 +22,13 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $product = Product::inRandomOrder()->first();
         return [
-            'user_id' => User::inRandomOrder()->first()->id
+            'purchase_id' => Purchase::inRandomOrder()->first()->id,
+            'product_id' => $product->id,
+            'color_id' => $product->colors()->inRandomOrder()->first(),
+            'size_id' => $product->sizes()->inRandomOrder()->first(),
+            'quantity' => random_int(1,20),
         ];
     }
 }

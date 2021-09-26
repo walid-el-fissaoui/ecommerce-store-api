@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Size;
-use App\Models\Color;
-use App\Models\Product;
-use App\Models\OrderProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,16 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function products() {
-        return $this->belongsToMany(Product::class)->using(OrderProduct::class)->withTimestamps();
+    protected $fillable = ['purchase_id','product_id','color_id','size_id'];
+
+    public function purchase() {
+        return $this->belongsTo(Purchase::class);
     }
-    public function sizes() {
-        return $this->belongsToMany(Color::class)->using(OrderProduct::class)->withTimestamps();
+    public function product() {
+        return $this->belongsTo(Product::class);
     }
-    public function colors() {
-        return $this->belongsToMany(Size::class)->using(OrderProduct::class)->withTimestamps();
+    public function color() {
+        return $this->belongsTo(Color::class);
     }
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function size() {
+        return $this->belongsTo(Size::class);
     }
 }
