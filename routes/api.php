@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,9 @@ Route::get('/sizes/search',[SizeController::class,'search']);
 Route::get('/sexes',[SexController::class,'index']);
 // Orders
 Route::post('/orders',[OrderController::class,'store']);
+// Users
+Route::get('/users',[UserController::class,'index']);
+Route::delete('/users/{id}',[UserController::class,'destroy']);
 
 // Items
 Route::get('/items',[ItemController::class,'index']);
