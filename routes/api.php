@@ -9,6 +9,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 
 /*
@@ -46,6 +47,9 @@ Route::get('/sizes/search',[SizeController::class,'search']);
 Route::get('/sexes',[SexController::class,'index']);
 // Orders
 Route::post('/orders',[OrderController::class,'store']);
+
+// Items
+Route::get('/items',[ItemController::class,'index']);
 
 // ============== Protected Routes ==============
 Route::middleware(['auth:sanctum'])->group(function () {

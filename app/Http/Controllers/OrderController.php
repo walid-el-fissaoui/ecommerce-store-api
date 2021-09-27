@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -18,15 +17,16 @@ class OrderController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
-            'products' => 'required'
+            'items' => 'required'
         ]);
         $userId = $request->input('user_id');
-        $order = Order::create(['user_id' => $userId]);
-        $order = Order::find($order->id);
-        $products = $request->input('products');
-        foreach ($products as $product) {
-            $order->products()->attach($product['product_id'],['color_id' => $product['color_id'], 'size_id' => $product['size_id'], 'quantity' => $product['quantity']]);
+        $items = collect($request->input("items"));
+        $formattedItems = [];
+        foreach ($items as $item) {
+            $formattedItems[$item['item_id']] = ['quantity' => $item['quantity']];
         }
-        return $order->products;
+        $order = Order::create(['user_id' => $userId]);
+        $order->items()->sync($formattedItems);
+        return $order;
     }
 }

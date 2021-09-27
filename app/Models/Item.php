@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
@@ -22,5 +23,13 @@ class Item extends Model
     }
     public function orders() {
         return $this->belongsToMany(Order::class)->withTimestamps()->withPivot("quantity");
+    }
+
+    public function scopeFilter(Builder $query) {
+        if(request('ids')) {
+            $ids = request('ids');
+            $query->whereIn('id',$ids);
+        }
+        return $query;
     }
 }
