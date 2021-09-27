@@ -38,28 +38,38 @@ class Product extends Model
         }
         if(request('categories')) {
                 $categories = request('categories');
-                $query->with('categories')->whereHas('categories',function($query) use($categories) {
+                $query->with('category')->whereHas('category',function($query) use($categories) {
                 $query->whereIn('category_id',$categories);
             });
         }
         if(request('brands')) {
             $brands = request('brands');
-            $query->with('brands')->whereHas('brands',function($query) use($brands) {
-                $query->whereIn('brand_id',$brands);
-            });
+            $query->whereIn('brand_id',$brands);
         }
+        // if(request('colors')) {
+        //     $colors = request('colors');
+        //     $query->with('colors')->whereHas('colors',function($query) use($colors) {
+        //         $query->whereIn('color_id',$colors);
+        //     });
+        // }
         if(request('colors')) {
             $colors = request('colors');
-            $query->with('colors')->whereHas('colors',function($query) use($colors) {
+            $query->with('items')->whereHas('items',function($query) use($colors) {
                 $query->whereIn('color_id',$colors);
             });
         }
         if(request('sizes')) {
             $sizes = request('sizes');
-            $query->with('sizes')->whereHas('sizes',function($query) use($sizes) {
+            $query->with('items')->whereHas('items',function($query) use($sizes) {
                 $query->whereIn('size_id',$sizes);
             });
         }
+        // if(request('sizes')) {
+        //     $sizes = request('sizes');
+        //     $query->with('sizes')->whereHas('sizes',function($query) use($sizes) {
+        //         $query->whereIn('size_id',$sizes);
+        //     });
+        // }
         if(request('sexes')) {
             $sexes = request('sexes');
             $query->with('sexes')->whereHas('sexes',function($query) use($sexes) {
@@ -74,10 +84,10 @@ class Product extends Model
             $maxPrice = request('max_price');
             $query->where('price','<=',$maxPrice);
         }
-        if(request('ids')) {
-            $ids = request('ids');
-            $query->whereIn('id',$ids);
-        }
+        // if(request('ids')) {
+        //     $ids = request('ids');
+        //     $query->whereIn('id',$ids);
+        // }
         return $query;
     }
 }

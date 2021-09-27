@@ -2,7 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\ProductImageResource;
+use App\Models\Size;
+use App\Models\Color;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -19,8 +20,9 @@ class ProductResource extends JsonResource
             'id'        => $this->id,
             'title'     => $this->title,
             'price'     => $this->price,
-            'image'     => new ProductImageResource($this->images()->first()),
-            'colors'    => ProductColorResource::collection($this->colors),
+            'image' => $this->items()->first()->image_url,
+            'colors' => Color::whereIn('id',$this->items()->pluck('color_id'))->pluck('color_hex'),
+            'category' => $this->category->title,
         ];
     }
 }

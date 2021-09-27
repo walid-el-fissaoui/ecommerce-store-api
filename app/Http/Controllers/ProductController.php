@@ -83,7 +83,10 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $perPage = $request->input('per_page') ?? null;
-        return ProductResource::collection(Product::filter()->paginate($perPage)->appends(['per_page' => $perPage]));
+        // dd();
+        // return ProductResource::collection(Product::filter());
+        // return ProductResource::collection(Product::filter()->paginate($perPage)->appends(['per_page' => $perPage]));
+        return ProductResource::collection(Product::filter()->paginate($perPage)->appends($request->all()));
     }
 
     /**
