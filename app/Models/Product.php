@@ -46,12 +46,6 @@ class Product extends Model
             $brands = request('brands');
             $query->whereIn('brand_id',$brands);
         }
-        // if(request('colors')) {
-        //     $colors = request('colors');
-        //     $query->with('colors')->whereHas('colors',function($query) use($colors) {
-        //         $query->whereIn('color_id',$colors);
-        //     });
-        // }
         if(request('colors')) {
             $colors = request('colors');
             $query->with('items')->whereHas('items',function($query) use($colors) {
@@ -64,12 +58,6 @@ class Product extends Model
                 $query->whereIn('size_id',$sizes);
             });
         }
-        // if(request('sizes')) {
-        //     $sizes = request('sizes');
-        //     $query->with('sizes')->whereHas('sizes',function($query) use($sizes) {
-        //         $query->whereIn('size_id',$sizes);
-        //     });
-        // }
         if(request('sexes')) {
             $sexes = request('sexes');
             $query->with('sexes')->whereHas('sexes',function($query) use($sexes) {
@@ -84,10 +72,6 @@ class Product extends Model
             $maxPrice = request('max_price');
             $query->where('price','<=',$maxPrice);
         }
-        // if(request('ids')) {
-        //     $ids = request('ids');
-        //     $query->whereIn('id',$ids);
-        // }
         return $query;
     }
 }
