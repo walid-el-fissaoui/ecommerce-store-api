@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProductCartResource;
-use App\Http\Resources\ProductDetailsResource;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductCartResource;
+use App\Http\Resources\AdminProductResource;
+use App\Http\Resources\ProductDetailsResource;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('per_page') ?? null;
-        return ProductResource::collection(Product::paginate($perPage)->appends(['per_page' => $perPage]));
+        return AdminProductResource::collection(Product::paginate($perPage)->appends(['per_page' => $perPage]));
     }
 
     /**
@@ -32,10 +33,22 @@ class ProductController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'slug' => 'required',
-            'price' => 'required'
+            'description' => 'required',
+            'price' => 'required',
+            'brand_id' => 'required',
+            'category_id' => 'required',
+            'sex' => 'required',
         ]);
-        return Product::create($request->all());
+        $product = Product::create([
+                        'title' => $request->input('title'),
+                        'slug' => Str::slug($request->input('title')),
+                        'description' => $request->input('description'),
+                        'price' => $request->input('price'),
+                        'brand_id' => $request->input('brand_id'),
+                        'category_id' => $request->input('category_id')
+                    ]);
+        $product->sexes()->sync($request->input('sex'));
+        return $product;
     }
 
     /**
