@@ -2,10 +2,10 @@
 This is a demo e-commerce website where I applied what I learned in Laravel framework and vue js 
 The api of the project 
 some screenshots : 
-![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/laravel-alpost/master/screenshots/screenshot-1.png)
-![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/laravel-alpost/master/screenshots/screenshot-2.png)
-![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/laravel-alpost/master/screenshots/screenshot-3.png)
-![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/laravel-alpost/master/screenshots/screenshot-4.png)
+![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/ecommerce-store-vue3/master/screenshots/screenshot-1.png)
+![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/ecommerce-store-vue3/master/screenshots/screenshot-2.png)
+![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/ecommerce-store-vue3/master/screenshots/screenshot-3.png)
+![alt text](https://raw.githubusercontent.com/walid-el-fissaoui/ecommerce-store-vue3/master/screenshots/screenshot-4.png)
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
